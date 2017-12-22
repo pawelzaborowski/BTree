@@ -1,6 +1,6 @@
 package btree.controller;
 
-public class FindResult {
+public class FindResult {       // moze samo result?
 
     private int type;
     private int result;

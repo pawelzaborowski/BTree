@@ -17,7 +17,6 @@ public class File {
 
         this.file = new RandomAccessFile(fileName, "rw");
         this.file.setLength(0);
-
         this.bTree = bTree;
 
         int sizeOfKeys = 2 * d * (4 + 4); // chyba tylko jedno 4

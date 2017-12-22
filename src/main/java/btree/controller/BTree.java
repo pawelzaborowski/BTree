@@ -28,7 +28,24 @@ public class BTree {
     }
 
     public FindResult find(IndexPage page, int key){
-        return ;
+
+        if(page == null){
+            return new FindResult(0);
+        }
+        else{
+            this.pagesList.add(page);
+            FindResult result = page.findKey(key);
+
+            if(result.getType() == 0) {
+                return result;
+            }
+            else {
+                return this.find(this.index.getPage(page.getChildPointer(result.getResult()), page), key);
+            }
+
+        }
+
+
     }
 
     public int insert(int key, double time){
