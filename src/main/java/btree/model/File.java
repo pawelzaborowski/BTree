@@ -12,6 +12,7 @@ public class File {
     protected BTree bTree;
     protected byte[] buffer;
     private int counter;
+    private int check;
 
     public File(BTree bTree, String fileName, int d) throws IOException {
 
