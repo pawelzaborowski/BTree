@@ -27,14 +27,14 @@ public class BTree {
         this.printStream = new PrintStream(new File(fileName));
     }
 
-    public FindResult find(IndexPage page, int key){
+    public Result find(IndexPage page, int key){
 
         if(page == null){
-            return new FindResult(0);
+            return new Result(0);
         }
         else{
             this.pagesList.add(page);
-            FindResult result = page.findKey(key);
+            Result result = page.findKey(key);
 
             if(result.getType() == 0) {
                 return result;
@@ -93,7 +93,9 @@ public class BTree {
         return this.d;
     }
 
-
+    public Index getIndex(){
+        return this.index;
+    }
 
 
 }

@@ -16,6 +16,7 @@ public class File {
 
     public File(BTree bTree, String fileName, int d) throws IOException {
 
+
         this.file = new RandomAccessFile(fileName, "rw");
         this.file.setLength(0);
         this.bTree = bTree;

@@ -1,6 +1,8 @@
 package btree.model;
 
 import btree.controller.BTree;
+import btree.controller.Result;
+import javafx.beans.property.ReadOnlySetProperty;
 
 import java.util.LinkedList;
 
@@ -23,6 +25,22 @@ public class IndexPage {
         this.keys = new LinkedList<>();
     }
 
+    public Result findKey(int toFind){
+        int index = 0;
+
+        for(Key k : this.keys){
+            if(k.getValue() == toFind){
+                return new Result(0, k.getRecPonint());
+            }
+            else{
+                return new Result(0, index);
+            }
+            index++;
+        }
+
+        return new Result(0. index);
+    }
+
     public void setParent(IndexPage parentPage){
         this.parent = parentPage;
     }
@@ -38,6 +56,8 @@ public class IndexPage {
     public void setM(int m){
         this.m = m;
     }
+
+    public int getM(){return this.m;}
 
     public PageToCompensation getPageToCompensation(int type){
         return;
@@ -56,20 +76,30 @@ public class IndexPage {
     }
 
 
-    public int findKey(int key){
+    public int getIndex(int toFind){
         int index = 0;
 
-        //for (Key key : this.keys){
+        for(Key k : this.keys){
+            if(k.getValue() >= toFind){
+                return index;
+            }
+            index++;
+        }
 
-        //}
-        return 0;
+        return index;
     }
 
-    public int getIndex(int key){
-        return 0;
+    public int insertKey(Key toInsert, Integer pointer){
+        return this.insertKey(this.getIndex(toInsert.getValue()),toInsert, pointer);
     }
 
-    public int insertKey(Key key, Integer p){
+    public int insertKey(int index, Key key, Integer pointer){
+        this.keys.add(index, key);
+        this.pointers.add(index, pointer);
+        this.m++;
+
+        this.bTree.getIndex().savePage(this);
+
         return 0;
     }
 
